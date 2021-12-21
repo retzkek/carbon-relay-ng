@@ -162,7 +162,7 @@ func (p *Pickle) Handle(c io.Reader) error {
 			case float32, float64:
 				value = fmt.Sprintf("%f", data[1])
 			default:
-				log.Errorf("pickle.go: Unrecognized type %T for value", data[1])
+				log.Errorf("pickle.go: Unrecognized type %T for value for metric %s", data[1], metric)
 				p.dispatcher.IncNumInvalid()
 				continue ItemLoop
 			}
@@ -176,7 +176,7 @@ func (p *Pickle) Handle(c io.Reader) error {
 			case float32, float64:
 				timestamp = fmt.Sprintf("%.0f", data[0])
 			default:
-				log.Errorf("pickle.go: Unrecognized type %T for timestamp", data[0])
+				log.Errorf("pickle.go: Unrecognized type %T for timestamp for metric %s", data[0], metric)
 				p.dispatcher.IncNumInvalid()
 				continue ItemLoop
 			}
